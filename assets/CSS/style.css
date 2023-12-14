@@ -1,0 +1,24 @@
+#scroll {
+  height: 100vh;
+
+  overflow: auto;
+}
+
+.body {
+  height: 100vh;
+}
+
+.scrollContainer {
+  height: 100%;
+}
+
+.row {
+  height: 100%;
+}
+
+#bg-image {
+  background-color: yellow;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
