@@ -4,17 +4,28 @@
   overflow: auto;
 }
 
+.row {
+  height: 100%;
+}
+
+#bg-image {
+  background-color: yellow;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+
 .body {
   height: 100vh;
 }
 
-<<<<<<< HEAD
 .colonne{
   background-color: black;
 }
 
-=======
->>>>>>> 6b63a18b70990e3072cf301a31f3a1b980b881b7
 .scrollContainer {
   height: 100%;
 }
@@ -29,7 +40,6 @@
   background-size: cover;
   background-position: center;
 }
-<<<<<<< HEAD
 
 /*Barra di scorrimento in stile nero/grigio.
   Modifica tutte le barre di scorrimento della pagina.
@@ -79,5 +89,3 @@
     margin: 10px 0;
     width: 100%;
   }
-=======
->>>>>>> 6b63a18b70990e3072cf301a31f3a1b980b881b7
