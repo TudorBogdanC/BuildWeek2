@@ -48,7 +48,7 @@ function albumEvidenza() {
           // Popola gli elementi con i dati ottenuti dall'API
           const div = document.getElementById(`album${index + 1}`);
           const img = div.querySelector('img');
-          const title = div.querySelector('testoAlbum');
+          const title = div.querySelector('small');
     
           // Genera un indice random per selezionare la copertina dell'album
           const randomIndex = Math.floor(Math.random() * data.data.length);
