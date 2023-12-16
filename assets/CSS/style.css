@@ -1,44 +1,19 @@
-#scroll {
-  height: 100vh;
-
-  overflow: auto;
-}
-
-.row {
-  height: 100%;
-}
-
-#bg-image {
-  background-color: yellow;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-
-
-
 .body {
   height: 100vh;
 }
 
-.colonne{
+/*SIDEBAR NAV*/
+.backGroundBlack {
   background-color: black;
 }
 
+/*SIDEBAR SCROLL*/
+#scroll {
+  height: 100vh;
+  overflow: auto;
+}
 .scrollContainer {
   height: 100%;
-}
-
-.row {
-  height: 100%;
-}
-
-#bg-image {
-  background-color: yellow;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 /*Barra di scorrimento in stile nero/grigio.
@@ -47,9 +22,8 @@
   essendo la scroll bar un elemento del browaer.
   In questo modifichiamo Chrome e Safari, altrimenti bisogna usare un'aggiunta esterna.*/
 
-
 ::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -65,27 +39,50 @@
   background-color: #555; /* Colore del cursore al passaggio del mouse */
 }
 
+/*SEZIONE AMICI*/
+.fontSize12 {
+  font-size: 12px;
+}
+
+/*FOOTER*/
+
 /*STILE VOLUME IN BASSO A DESTRA*/
 
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0;
+}
 
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 0;
-    height: 0;
-  }
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: none;
+  background: #ddd;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
 
-  input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: none;
-    background: #ddd; 
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
-  }
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
 
-  input[type="range"] {
-    -webkit-appearance: none;
-    margin: 10px 0;
-    width: 100%;
-  }
+/* .row {
+  height: 100%;
+} */
+
+/*PAGINA ARTIST*/
+
+/*testo following bottone*/
+.following {
+  font-size: x-small;
+}
+#bg-image {
+  background-color: yellow;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
