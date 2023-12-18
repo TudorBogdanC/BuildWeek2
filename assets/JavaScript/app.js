@@ -56,26 +56,80 @@ async function albumCard(response) {
 
   // Access the cover_xl property from the response
   const cover = response.cover_medium;
+  const title = response.title;
+  const artistPic = response.artist.picture;
+  const artistName= response.artist.name;
+  const year = response.release_date;
+  const numTracks = response.nb_tracks;
+  const durationSec = response.duration;
+  const durationMin =  (durationSec/60); 
+  
+  const totTracks = []
+  for (let i = 0; i < response.tracks.data.length; i++) {
+    // Estrai il titolo e l'artista dall'oggetto corrente e aggiungili all'array risultante
+    let titolo = response.tracks.data[i].title;
+    let artista = response.tracks.data[i].artist;
 
+    let jsonString = JSON.stringify(totTracks);
+    console.log(jsonString);
+    // Aggiungi titolo e artista all'array risultante
+    totTracks.push({ title: titolo, artist: artista });
+}
+
+
+ 
+
+  
+
+
+  
+
+
+  //const artistPic = response.album.contributors.picture_small;
   // Crea l'elemento div con la classe 'col-3 card text-bg-light mb-3'
   const cardAlbum = document.getElementById("bg-image");
+  const cardTracks = document.getElementById("listaTracks");
 
   // Crea l'elemento div con la classe 'card-body' e aggiungilo come figlio di cardDiv
   const div = `
     
-      <div class="row ">
+      <div class="row d-flex">
         <div class="col-4">
-          <img src="${cover}" alt="albumPicture">
+          <img src="${cover}" salt="albumPicture">
         </div>
-        <div class="col-8">
-          <p class="text-light">pippo</p>
+        <div class="col-8 text-light d-flex flex-column align-items-start align-self-end">
+        <small>ALBUM</small>
+        <h1 class="mb-3 display-2 fw-bolder">${title}</h1>
+        <small><img class="rounded-circle" style="width: 5%;" src="${artistPic}" alt="artistPicture">
+        ${artistName} • ${year} • ${numTracks} brani, ${durationMin} min.
+        </small>
         </div>
       </div>
     
     
   `;
-
   cardAlbum.innerHTML += div;
+
+// Inizio div tracks
+
+  const list = `
+    <div class="row text-light mt-5">
+        <div class="col-1 text-end">#</div>
+        <div class="col-6">TITOLO
+        <div>${JSON.stringify(totTracks)}</div>
+        </div>
+      
+        <div class="col-3 text-end">RIPRODUZIONI</div>
+        <div class="col-2 text-end">
+          <i
+           class="fa-regular fa-clock fa-xs"
+           style="color: #d2d9e4"
+          ></i>
+    </div>
+
+  `
+
+  cardTracks.innerHTML += list;
 
   return cardAlbum; // You may want to return cardAlbum if needed
 }
