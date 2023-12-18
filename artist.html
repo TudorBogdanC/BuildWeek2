@@ -335,13 +335,13 @@
                     <!--icone-->
                     <div class="col mt-3 d-flex justify-content-between">
                       <div>
-                        <a href="./homepage.html">
+                        <a class="text-decoration-none" href="./homepage.html">
                           <i
                             class="fa-solid fa-circle-chevron-left fa-2xl"
                             style="color: black"
                           ></i>
                         </a>
-                        <a href="./album.html">
+                        <a class="text-decoration-none" href="./album.html">
                           <i
                             class="fa-solid fa-circle-chevron-right fa-2xl"
                             style="color: black"
@@ -712,5 +712,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/JavaScript/app.js"></script>
+    <script>window.onload = () => {
+      getArtistData();
+    };</script>
   </body>
 </html>
