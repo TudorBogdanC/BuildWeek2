@@ -80,9 +80,10 @@ input[type="range"] {
 .following {
   font-size: x-small;
 }
-#bg-image {
+
+/* #bg-image {
   background-color: yellow;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
+} */

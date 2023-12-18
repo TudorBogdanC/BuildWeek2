@@ -30,6 +30,60 @@ async function searchContent(text) {
   createCard(response.data);
 }
 
+async function getAlbumData() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("albumId");
+  
+  try {
+    let response = await (
+      await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/album/${id}`
+      )
+    ).json();
+    console.log(response);
+    albumCard(response); // Pass the response to albumCard function
+  } catch (error) {
+    console.error("Error fetching album data:", error);
+  }
+}
+
+async function albumCard(response) {
+  // Check if the response contains the necessary information
+  if (!response) {
+    console.error("Invalid or missing data in the API response.");
+    return;
+  }
+
+  // Access the cover_xl property from the response
+  const cover = response.cover_medium;
+
+  // Crea l'elemento div con la classe 'col-3 card text-bg-light mb-3'
+  const cardAlbum = document.getElementById("bg-image");
+
+  // Crea l'elemento div con la classe 'card-body' e aggiungilo come figlio di cardDiv
+  const div = `
+    
+      <div class="row ">
+        <div class="col-4">
+          <img src="${cover}" alt="albumPicture">
+        </div>
+        <div class="col-8">
+          <p class="text-light">pippo</p>
+        </div>
+      </div>
+    
+    
+  `;
+
+  cardAlbum.innerHTML += div;
+
+  return cardAlbum; // You may want to return cardAlbum if needed
+}
+
+// Call the getAlbumData function to initiate the process
+
+
+
 /*CARDS NELLA SEARCH*/
 
 function createCard(list) {
@@ -125,7 +179,6 @@ function albumEvidenza() {
 
       albumCover.src = data.data[randomIndex].artist.picture_medium;
       titolo.textContent = data.data[randomIndex].title;
-      
     })
     .catch((error) => {
       console.error("Si è verificato un errore:", error);
@@ -151,7 +204,9 @@ function scaricaAlbums() {
 
   artists.forEach((artist, index) => {
     // Effettua una richiesta HTTP all'API
-    fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`)
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`
+    )
       .then((response) => response.json())
       .then((data) => {
         // Popola gli elementi con i dati ottenuti dall'API
@@ -169,15 +224,13 @@ function scaricaAlbums() {
         imgElements[1].src = data.data[randomIndex2].album.cover_medium;
         imgElements[2].src = data.data[randomIndex3].album.cover_medium;
         imgElements[3].src = data.data[randomIndex4].album.cover_medium;
-        title.textContent =  data.data[randomIndex1].artist.name;
+        title.textContent = data.data[randomIndex1].artist.name;
       })
       .catch((error) => {
         console.error("Si è verificato un errore:", error);
       });
   });
 }
-
-
 
 scaricaAlbums();
 
@@ -189,7 +242,9 @@ function createCards() {
   cardsContainer.innerHTML = "";
 
   artists.forEach((artist) => {
-    fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`)
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`
+    )
       .then((response) => response.json())
       .then((data) => {
         const randomIndex = Math.floor(Math.random() * data.data.length);
@@ -210,5 +265,4 @@ function createCards() {
   });
 }
 
-createCards(); 
-
+createCards();
