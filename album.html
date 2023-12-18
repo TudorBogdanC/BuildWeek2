@@ -22,7 +22,7 @@
         <navbar class="backGroundBlack col-3 p-0">
           <div class="text-light">
             <!--ICON NAVBAR -->
-            <div class="text-light mb-2">
+            <navbar class="text-light mb-2">
               <ul class="list-group">
                 <li class="list-group-item border-0 bg-transparent">
                   <i class="fa-solid fa-ellipsis" style="color: #687078"></i>
@@ -41,13 +41,71 @@
                   >
                 </li>
                 <li class="list-group-item border-0 bg-transparent">
-                  <i
-                    class="fa-solid fa-magnifying-glass me-2"
-                    style="color: #687078"
-                  ></i>
-                  <a class="text-secondary text-decoration-none" href="#"
-                    >Cerca</a
+                  <div
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
                   >
+                    <i
+                      class="fa-solid fa-magnifying-glass me-2"
+                      style="color: #687078"
+                    ></i>
+                    <a class="text-secondary text-decoration-none" href="#"
+                      >Cerca</a
+                    >
+                  </div>
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <!--MODALE-->
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="backGroundBlack modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            <button
+                              type="button"
+                              class="d-flex flex-row btn btn-dark align-items-center rounded-5"
+                            >
+                              <i
+                                class="fa-solid fa-magnifying-glass me-2"
+                                style="color: #687078"
+                              ></i>
+                              <a
+                                class="text-light text-decoration-none"
+                                href="#"
+                                ><input
+                                  id="searchBar"
+                                  class="form-control me-2 rounded-5 border-0"
+                                  type="search"
+                                  placeholder="Cosa vuoi ascoltare?"
+                                  aria-label="Search"
+                                  data-bs-theme="dark"
+                              /></a>
+                            </button>
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close bg-secondary"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body bg-dark text-light">
+                          <h4><strong>Sfoglia tutto</strong></h4>
+
+                          <!--CARDS-->
+                          <div
+                            id="contentList"
+                            class="row d-flex justify-content-between"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </li>
                 <li class="list-group-item border-0 bg-transparent">
                   <i
@@ -59,7 +117,7 @@
                   >
                 </li>
               </ul>
-            </div>
+            </navbar>
             <!--------------------------------------------------->
             <div class="text-light mt-2">
               <ul class="list-group">
@@ -93,7 +151,7 @@
             <hr class="mx-3" />
 
             <!-- SCROLL SECTION -->
-            <div class="scrollContainer">
+            <div>
               <div id="scroll">
                 <ul class="list-group">
                   <li
@@ -277,7 +335,7 @@
         </navbar>
 
         <!--MAIN-->
-        <main class="col-7 p-0 bg-dark">
+        <main class="col-7 p-0 backGroundBlack bg-gradient">
           <div class="container-fluid">
             <div class="container-fluid p-0">
               <div class="row">
@@ -287,10 +345,13 @@
                     <!--icone-->
                     <div class="col mt-3 d-flex justify-content-between">
                       <div>
-                        <i
-                          class="fa-solid fa-circle-chevron-left fa-2xl"
-                          style="color: black"
-                        ></i>
+                        <a href="./artist.html">
+                          <i
+                            class="fa-solid fa-circle-chevron-left fa-2xl"
+                            style="color: black"
+                          ></i>
+                        </a>
+
                         <i
                           class="fa-solid fa-circle-chevron-right fa-2xl"
                           style="color: black"
@@ -381,7 +442,7 @@
         <!--Colonna aside amici-->
 
         <!--Abbiamo dovuto aggiungere due colonne per dividere h6 da icone-->
-        <div class="backGroundBlack col text-light p-0">
+        <aside class="backGroundBlack col text-light p-0">
           <div class="container">
             <div class="row gx-2 mt-2">
               <div class="col-10 text-light p-0">
@@ -519,13 +580,13 @@
               </div>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
 
     <!-- ========== Footer ========== -->
 
-    <div class="sticky-bottom container-fluid bg-dark text-light">
+    <footer class="sticky-bottom container-fluid bg-dark text-light">
       <div class="row">
         <div class="col-3">
           <div class="flex-row d-flex my-2">
@@ -537,7 +598,7 @@
             <div>
               <!--Div Canzone e cantante-->
               <p class="ml-2 me-3 mb-1 mt-2">evermore</p>
-              <small style="font-size: 12px">Taylor Swift</small>
+              <small class="fontSize12">Taylor Swift</small>
             </div>
             <div>
               <i class="fa-regular fa-heart mt-4" style="color: #ffffff"></i>
@@ -547,44 +608,75 @@
 
         <!--Div PLAYER-->
         <div class="col-7 d-flex justify-content-center">
-          <div class="mt-4">
-            <i
-              class="fa-solid fa-shuffle fa-lg mx-1"
-              style="color: #1a6f38"
-            ></i>
-            <i
-              class="fa-solid fa-caret-left fa-lg mx-1"
-              style="color: #b4b4b4"
-            ></i>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              fill="white"
-              class="bi bi-play-circle-fill mx-1"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5"
-              />
-            </svg>
-            <i
-              class="fa-solid fa-caret-right fa-lg mx-1"
-              style="color: #b4b4b4"
-            ></i>
-            <i class="fa-solid fa-repeat fa-lg mx-1" style="color: #1a6f38"></i>
+          <div class="row col-8 flex-column">
+            <div class="col mt-4 text-center mb-2">
+              <i
+                class="fa-solid fa-shuffle fa-lg mx-1"
+                style="color: #1a6f38"
+              ></i>
+              <i
+                class="fa-solid fa-caret-left fa-lg mx-1"
+                style="color: #b4b4b4"
+              ></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="white"
+                class="bi bi-play-circle-fill mx-1"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5"
+                />
+              </svg>
+              <i
+                class="fa-solid fa-caret-right fa-lg mx-1"
+                style="color: #b4b4b4"
+              ></i>
+              <i
+                class="fa-solid fa-repeat fa-lg mx-1"
+                style="color: #1a6f38"
+              ></i>
+            </div>
+            <!--PROGRESSIVE BAR-->
+            <div class="col d-flex flex-column">
+              <div class="row align-items-center">
+                <div class="col-1">
+                  <span>0:58</span>
+                </div>
+                <div class="col-10">
+                  <div
+                    class="progress bg-secondary"
+                    role="progressbar"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style="height: 5px"
+                    width="100%"
+                  >
+                    <div class="progress-bar bg-light" style="width: 25%"></div>
+                  </div>
+                </div>
+                <div class="col-1">
+                  <span
+                    ><!--contenuto dinamico prendere "duration" del brano--></span
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!--Div ICONE CONTROLLI-->
-        <div class="col-2">
-          <div class="mt-3">
+        <div class="col-2 d-flex align-items-center">
+          <div class="">
             <i
               class="fa-solid fa-microphone-lines fa-sm"
               style="color: #b4b4b4"
             ></i>
             <i
-              class="fa-solid fa-bars-staggered fa-sm"
+              class="fa-solid fa-bars-staggered fa-sm mx-2"
               style="color: #b4b4b4"
             ></i>
             <svg
@@ -607,7 +699,7 @@
               type="range"
               class="form-range"
               id="customRange1"
-              style="width: 50%; height: 10px"
+              style="width: 55%; height: 10px"
             />
             <i
               class="fa-solid fa-up-right-and-down-left-from-center fa-sm"
@@ -616,7 +708,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
