@@ -249,11 +249,10 @@ async function getPopData() {
     console.log(responseArtist);
     contentPopList(responseArtist); // Pass the response to albumCard function
   } catch (error) {
-    /*console.error("Error fetching album data:", error);*/
+    console.error("Error fetching album data:", error);
   }
 }
 
-document.addEventListener("DOMContentLoaded", getPopData);
 
 
 const popularSongs = document.getElementById ('popularSongs');
@@ -303,7 +302,7 @@ const divPopolari = `
 </div>
 `
 popularList.innerHTML += divPopolari;
-}
+} 
 
 
 
