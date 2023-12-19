@@ -236,6 +236,82 @@ async function artistCard(response) {
 }
 
 
+async function getPopData() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("artistId");
+  let responseArtist;
+  try {
+     responseArtist = await (
+      await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`
+      )
+    ).json();
+    console.log(responseArtist);
+    contentPopList(responseArtist); // Pass the response to albumCard function
+  } catch (error) {
+    /*console.error("Error fetching album data:", error);*/
+  }
+}
+
+document.addEventListener("DOMContentLoaded", getPopData);
+
+
+const popularSongs = document.getElementById ('popularSongs');
+const container = `
+
+   <div class="col-8">
+      <h5>Popolari</h5>
+      <!-- Popolari -->
+        <div class="d-flex"> 
+       
+          <small>VISUALIZZA ALTRO</small>
+         </div>
+        </div>
+      <div class="col-4">
+       <h5>Brani che ti piacciono</h5>
+      
+      <div>
+        <strong>Hai messo mi piace a 11 brani</strong>
+        <small>Di</small>
+      </div>
+    </div>    
+`
+
+const cover = responseArtist.cover_medium;
+const trackPop = responseArtist.tracks.data;
+const rankPop = responseArtist.rank;
+const durationPop = responseArtist.duration;
+
+
+popularSongs.innerHTML += container;
+function contentPopList () {
+const divPopolari = `
+<div class="row" id="popularList">
+  <div class="col">
+    <ol>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+  </div>
+  <div class="col">${cover}</div>
+  <div class="col">${trackPop}</div>
+  <div class="col">${rankPop}</div>
+  <div class="col">${durationPop}</div>
+</div>
+`
+popularList.innerHTML += divPopolari;
+}
+
+
+
+
+
+
+
+
 /*CARDS NELLA SEARCH*/
 
 function createCard(list) {
@@ -289,9 +365,10 @@ function buildCard(el) {
   img.className = "mt-0 img-fluid rounded-3";
   img.src = el.album.cover_medium;
   // Crea l'elemento h5 con la classe 'card-title' e aggiungilo come figlio di cardBodyDiv
-  const track = document.createElement("h5");
-  track.className = "card-title mb-0";
-  track.innerText = `${el.title}`;
+  const track = document.createElement("a");
+  track.className = "card-title mb-0 text-decoration-none";
+  track.href = `./album.html?albumId=${el.album.id}`;
+  track.innerText = el.album.title;
 
   const artist = document.createElement("a");
   artist.className = "card-text text-secondary text-decoration-none lh-1";
