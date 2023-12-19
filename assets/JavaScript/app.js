@@ -127,6 +127,115 @@ async function albumCard(response) {
 
 // Call the getAlbumData function to initiate the process
 
+
+
+
+// Funzione per fare il fetch del id album dalla API //
+
+async function getArtistData() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("artistId");
+
+  try {
+    let response = await (
+      await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`
+      )
+    ).json();
+    console.log(response);
+    artistCard(response); // Pass the response to albumCard function
+  } catch (error) {
+    console.error("Error fetching album data:", error);
+  }
+}
+
+
+
+
+async function artistCard(response) {
+  // Check if the response contains the necessary information
+  if (!response) {
+    console.error("Invalid or missing data in the API response.");
+    return;
+  }
+
+  // Accedi alle proprietà dal response 
+  const artistCover = response.picture_xl;
+  const artistName = response.name;
+  const fan = response.nb_fan;
+
+  // crea la constante dove javascript inserirà il div creato con la struttura html //
+  const cardAlbum = document.getElementById("bg-image");
+
+  // Set the background image of the cardAlbum div
+  cardAlbum.style.backgroundImage = `url(${artistCover})`;
+  cardAlbum.style.backgroundSize = "cover";
+  cardAlbum.style.backgroundPosition = "center";
+
+  // Creare la card con copertina album ed info che si popola al search di un determinato artista //
+  const div = `
+  <div class="row mb-5">
+  <!--icone-->
+  <div class="col mt-3 d-flex justify-content-between">
+    <div>
+      <a class="text-decoration-none" href="./homepage.html">
+        <i
+          class="fa-solid fa-circle-chevron-left fa-2xl"
+          style="color: black"
+        ></i>
+      </a>
+      <a class="text-decoration-none" href="./album.html">
+        <i
+          class="fa-solid fa-circle-chevron-right fa-2xl"
+          style="color: black"
+        ></i>
+      </a>
+    </div>
+    <!-- ========== ICONA PROFILO ========== -->
+    <div class="dropdown">
+      <button
+        class="backGroundBlack btn btn-dark rounded-5 dropdown-toggle btn-sm mb-3 p-0 pe-2"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="./assets/images/avatar-2.jpg"
+          class="rounded-circle"
+          alt="immagine profilo"
+          height="23px"
+          width="23px"
+        />
+        Livia Nautilus ...
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark rounded-2">
+        <li><a class="dropdown-item" href="#">Account</a></li>
+        <li>
+          <a class="dropdown-item" href="#">Impostazioni</a>
+        </li>
+
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <a class="dropdown-item" href="#">Esci</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row d-flex mb-3 text-light">
+    <small><img src="./assets/images/verify.png">Artista verificato</small>
+    <div class="col-8 d-flex flex-column align-items-start align-self-end">
+    <h1 class="mb-3 display-2 fw-bolder">${artistName}</h1>
+    </div>
+    <small>${fan} ascoltatori mensili </small>
+</div>
+  `;
+
+  // Append il contenuto html al div cardAlbum //
+  cardAlbum.innerHTML = div;
+}
+
+
 /*CARDS NELLA SEARCH*/
 
 function createCard(list) {
