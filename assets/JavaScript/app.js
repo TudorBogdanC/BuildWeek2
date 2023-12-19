@@ -33,7 +33,7 @@ async function searchContent(text) {
 async function getAlbumData() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("albumId");
-  
+
   try {
     let response = await (
       await fetch(
@@ -58,32 +58,25 @@ async function albumCard(response) {
   const cover = response.cover_medium;
   const title = response.title;
   const artistPic = response.artist.picture;
-  const artistName= response.artist.name;
+  const artistName = response.artist.name;
   const year = response.release_date;
   const numTracks = response.nb_tracks;
   const durationSec = response.duration;
-  const durationMin =  (durationSec/60); 
-  
-  const totTracks = []
-  for (let i = 0; i < response.tracks.data.length; i++) {
-    // Estrai il titolo e l'artista dall'oggetto corrente e aggiungili all'array risultante
-    let titolo = response.tracks.data[i].title;
-    let artista = response.tracks.data[i].artist;
+  const durationMin = durationSec / 60;
+  const tracks = response.tracks.data;
 
-    let jsonString = JSON.stringify(totTracks);
-    console.log(jsonString);
-    // Aggiungi titolo e artista all'array risultante
-    totTracks.push({ title: titolo, artist: artista });
-}
+  let htmlTrackList = "";
 
-
- 
-
-  
-
-
-  
-
+  tracks.forEach((track, index) => {
+    htmlTrackList += `<div class="row text-light mt-5">
+        <div class="col-1 text-end">${index + 1}</div>
+        <div class="col-6">${track.title}<br>${track.artist.name}</div>
+      
+        <div class="col-3 text-end">${track.rank}</div>
+        <div class="col-2 text-end">${track.duration}</div>
+        </div>
+        `;
+  });
 
   //const artistPic = response.album.contributors.picture_small;
   // Crea l'elemento div con la classe 'col-3 card text-bg-light mb-3'
@@ -110,14 +103,12 @@ async function albumCard(response) {
   `;
   cardAlbum.innerHTML += div;
 
-// Inizio div tracks
+  // Inizio div tracks
 
   const list = `
     <div class="row text-light mt-5">
         <div class="col-1 text-end">#</div>
-        <div class="col-6">TITOLO
-        <div>${JSON.stringify(totTracks)}</div>
-        </div>
+        <div class="col-6">TITOLO</div>
       
         <div class="col-3 text-end">RIPRODUZIONI</div>
         <div class="col-2 text-end">
@@ -126,8 +117,8 @@ async function albumCard(response) {
            style="color: #d2d9e4"
           ></i>
     </div>
-
-  `
+    ${htmlTrackList}
+  `;
 
   cardTracks.innerHTML += list;
 
@@ -135,8 +126,6 @@ async function albumCard(response) {
 }
 
 // Call the getAlbumData function to initiate the process
-
-
 
 /*CARDS NELLA SEARCH*/
 
