@@ -137,13 +137,13 @@ async function getArtistData() {
   const id = urlParams.get("artistId");
 
   try {
-    let response = await (
-      await fetch(
+    let data = await fetch(
         `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`
-      )
-    ).json();
+    )
+    let response = await data.json();
     console.log(response);
     artistCard(response); // Pass the response to albumCard function
+    await getPopData(response);
   } catch (error) {
     console.error("Error fetching album data:", error);
   }
@@ -236,74 +236,62 @@ async function artistCard(response) {
 }
 
 
-async function getPopData() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get("artistId");
-  let responseArtist;
+async function getPopData(artist) {
+  console.log(artist);
+  let artistId = artist.id;
+  console.log(artistId);
   try {
-     responseArtist = await (
-      await fetch(
-        `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`
-      )
-    ).json();
-    console.log(responseArtist);
-    contentPopList(responseArtist); // Pass the response to albumCard function
+     const responseArtist = await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=50
+        `
+    )
+    const response = await responseArtist.json();
+    console.log(response);
+    contentPopList(response); // Pass the response to albumCard function
   } catch (error) {
     /*console.error("Error fetching album data:", error);*/
   }
-}
 
-document.addEventListener("DOMContentLoaded", getPopData);
 
 
 const popularSongs = document.getElementById ('popularSongs');
 const container = `
 
-   <div class="col-8">
-      <h5>Popolari</h5>
-      <!-- Popolari -->
-        <div class="d-flex"> 
-       
-          <small>VISUALIZZA ALTRO</small>
-         </div>
-        </div>
-      <div class="col-4">
-       <h5>Brani che ti piacciono</h5>
-      
-      <div>
-        <strong>Hai messo mi piace a 11 brani</strong>
-        <small>Di</small>
-      </div>
-    </div>    
+    
 `
 
-const cover = responseArtist.cover_medium;
-const trackPop = responseArtist.tracks.data;
-const rankPop = responseArtist.rank;
-const durationPop = responseArtist.duration;
+/*const cover = await responseArtist.album.cover_medium;
+const trackPop = await responseArtist.tracks.data;
+const rankPop = await responseArtist.rank;
+const durationPop = await responseArtist.duration;*/
 
 
-popularSongs.innerHTML += container;
-function contentPopList () {
+popularSongs.innerHTML += container; 
+
+
+
+function contentPopList (responseArtist) {
+  popularList = document.getElementById('popularSongs');
+  console.log(responseArtist.data);
+  popularList.innerHTML = "";
+
+  for (let i = 0; i < 5; i++) {
+ 
+
 const divPopolari = `
-<div class="row" id="popularList">
-  <div class="col">
-    <ol>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ol>
-  </div>
-  <div class="col">${cover}</div>
-  <div class="col">${trackPop}</div>
-  <div class="col">${rankPop}</div>
-  <div class="col">${durationPop}</div>
+
+  <div class="d-flex">
+ 
+  <div>${responseArtist.data[i].album.cover}</div>
+  <div>${responseArtist.data[i].title}</div>
+  <div>${responseArtist.data[i].rank}</div>
+  <div>${responseArtist.data[i].duration}</div>
 </div>
 `
+console.log(divPopolari);
+
 popularList.innerHTML += divPopolari;
-}
+}}}
 
 
 
