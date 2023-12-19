@@ -340,7 +340,7 @@
             <div class="container-fluid p-0">
               <div class="row" id="bg-image">
                 <!--HERO SECTION-->
-                <div class="col" >
+                <div class="col">
                   <div class="row">
                     <!--icone-->
                     <div class="col mt-3 d-flex justify-content-between">
@@ -564,14 +564,17 @@
         <div class="col-3">
           <div class="flex-row d-flex my-2">
             <img
+              id="playerTrackImage"
               src="assets/images/Screenshot 2023-12-14 150607.png"
               class="me-3"
               width="20%"
             />
             <div>
               <!--Div Canzone e cantante-->
-              <p class="ml-2 me-3 mb-1 mt-2">evermore</p>
-              <small class="fontSize12">Taylor Swift</small>
+              <p id="playerTrackName" class="ml-2 me-3 mb-1 mt-2">evermore</p>
+              <small id="playerArtistName" class="fontSize12"
+                >Taylor Swift</small
+              >
             </div>
             <div>
               <i class="fa-regular fa-heart mt-4" style="color: #ffffff"></i>
@@ -631,7 +634,7 @@
                     <div class="progress-bar bg-light" style="width: 25%"></div>
                   </div>
                 </div>
-                <div class="col-1">
+                <div id="durataTrack" class="col-1">
                   <span
                     ><!--contenuto dinamico prendere "duration" del brano--></span
                   >
@@ -687,9 +690,8 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/JavaScript/app.js"></script>
-    <script>window.onload = () => {
-      getAlbumData();
-    };</script>
+    <script src="./assets/JavaScript/api.js"></script>
+    <script src="./assets/JavaScript/utils.js"></script>
+    <script src="./assets/JavaScript/album.js"></script>
   </body>
 </html>

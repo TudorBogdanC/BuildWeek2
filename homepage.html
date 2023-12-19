@@ -94,8 +94,10 @@
                         <!--CARDS-->
                         <div
                           id="contentList"
-                          class="row d-flex justify-content-between"
-                        ></div>
+                          class="row d-flex justify-content-center"
+                        >
+                          <img src="./assets/images/cards.png" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -332,15 +334,15 @@
               <div class="col mt-3 d-flex justify-content-between">
                 <div>
                   <i
-                    class="fa-solid fa-circle-chevron-left fa-2xl opacity-50"
-                    style="color: black"
+                    id="leftBtn"
+                    class="fa-solid fa-circle-chevron-left fa-2xl opacity-50 pointer"
+                    style="color: black; cursor: pointer"
                   ></i>
-                  <a href="./artist.html">
-                    <i
-                      class="fa-solid fa-circle-chevron-right fa-2xl"
-                      style="color: black"
-                    ></i>
-                  </a>
+                  <i
+                    id="rightBtn"
+                    class="fa-solid fa-circle-chevron-right fa-2xl"
+                    style="color: black; cursor: pointer"
+                  ></i>
                 </div>
 
                 <!--ICONA PROFILO-->
@@ -380,11 +382,7 @@
               <div class="row" id="albumEvidenza">
                 <!--viola-->
                 <div class="col-2 my-3">
-                  <img
-                    id="albumCover"
-                    src=""
-                    width="100%"
-                  />
+                  <img id="albumCover" src="" width="100%" />
                 </div>
                 <div class="col-10 my-2">
                   <div class="d-flex justify-content-between">
@@ -398,8 +396,11 @@
                   </div>
                   <!--BOTTONI-->
                   <div id="testoAlbum"></div>
+                  <div id="artistName"></div>
+                  <div id="ascolta">Ascolta il nuovo singolo di</div>
                   <div class="my-4">
                     <button
+                      id="playBtn"
                       type="button"
                       class="btn btn-success text-black fs-6 px-4 btn-sm rounded-5 me-4"
                     >
@@ -407,7 +408,7 @@
                     </button>
                     <button
                       type="button"
-                      class="btn btn-outline-light text-light fs-6 px-4 btn-sm rounded-5 me-4"
+                      class="btn btn-outline-light fs-6 px-4 btn-sm rounded-5 me-4"
                     >
                       Salva
                     </button>
@@ -423,8 +424,9 @@
               <div
                 class="row row-cols-4 gap-2 d-flex justify-content-between px-3"
                 id="album"
-              > <!--========== inizio sezione BUONASERA ==========-->
-                <div class="col">
+              >
+                <!--========== inizio sezione BUONASERA ==========-->
+                <div id="artist1" class="col">
                   <div class="row text-light bg-dark" id="album1">
                     <div class="col-2 m-0 p-0 d-flex">
                       <div>
@@ -443,7 +445,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div id="artist2" class="col">
                   <div class="row text-light bg-dark" id="album2">
                     <div class="col-2 m-0 p-0 d-flex">
                       <div>
@@ -462,7 +464,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div id="artist3" class="col">
                   <div class="row text-light bg-dark" id="album3">
                     <div class="col-2 m-0 p-0 d-flex">
                       <div>
@@ -481,7 +483,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div id="artist4" class="col">
                   <div class="row text-light bg-dark" id="album4">
                     <div class="col-2 m-0 p-0 d-flex">
                       <div>
@@ -500,7 +502,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div id="artist5" class="col">
                   <div class="row text-light bg-dark" id="album5">
                     <div class="col-2 m-0 p-0 d-flex">
                       <div>
@@ -519,7 +521,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div id="artist6" class="col">
                   <div class="row text-light bg-dark" id="album6">
                     <div class="col-2 m-0 p-0 d-flex">
                       <div>
@@ -709,14 +711,17 @@
         <div class="col-3">
           <div class="flex-row d-flex my-2">
             <img
+              id="playerTrackImage"
               src="assets/images/Screenshot 2023-12-14 150607.png"
               class="me-3"
               width="20%"
             />
             <div>
               <!--Div Canzone e cantante-->
-              <p class="ml-2 me-3 mb-1 mt-2">evermore</p>
-              <small class="fontSize12">Taylor Swift</small>
+              <p id="playerTrackName" class="ml-2 me-3 mb-1 mt-2">evermore</p>
+              <small id="playerArtistName" class="fontSize12"
+                >Taylor Swift</small
+              >
             </div>
             <div>
               <i class="fa-regular fa-heart mt-4" style="color: #ffffff"></i>
@@ -776,10 +781,8 @@
                     <div class="progress-bar bg-light" style="width: 25%"></div>
                   </div>
                 </div>
-                <div class="col-1">
-                  <span
-                    ><!--contenuto dinamico prendere "duration" del brano--></span
-                  >
+                <div id="durataTrack" class="col-1">
+                  <span></span>
                 </div>
               </div>
             </div>
@@ -833,7 +836,8 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/JavaScript/app.js"></script>
-    <script></script>
+    <script src="./assets/JavaScript/api.js"></script>
+    <script src="./assets/JavaScript/utils.js"></script>
+    <script src="./assets/JavaScript/home.js"></script>
   </body>
 </html>
