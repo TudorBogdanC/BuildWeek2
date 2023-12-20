@@ -14,11 +14,13 @@ async function searchContent(text) {
   createCard(response.data);
 }
 
-function setOnPlay(artistName, trackName, imgSrc) {
+function setOnPlay(artistName, trackName, imgSrc, duration) {
   let playerArtist = document.getElementById("playerArtistName");
   let playerTrack = document.getElementById("playerTrackName");
   let playerImg = document.getElementById("playerTrackImage");
+  let playerDuration = document.getElementById("durataTrack");
 
+  playerDuration.innerText = normalizeTime(duration);
   playerArtist.innerText = artistName;
   playerTrack.innerText = trackName;
   playerImg.src = imgSrc;
@@ -141,4 +143,8 @@ function buildCard(el) {
   // Aggiungi cardText come figlio di cardBodyDiv
   cardBodyDiv.appendChild(album);
   return cardDiv;
+}
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

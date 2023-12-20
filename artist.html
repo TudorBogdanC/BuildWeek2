@@ -335,13 +335,13 @@
                     <!--icone-->
                     <div class="col mt-3 d-flex justify-content-between">
                       <div>
-                        <a class="text-decoration-none" href="./homepage.html">
+                        <a id="previousArtist" class="text-decoration-none">
                           <i
                             class="fa-solid fa-circle-chevron-left fa-2xl"
                             style="color: black"
                           ></i>
                         </a>
-                        <a class="text-decoration-none" href="./album.html">
+                        <a id="nextArtist" class="text-decoration-none">
                           <i
                             class="fa-solid fa-circle-chevron-right fa-2xl"
                             style="color: black"
@@ -418,7 +418,7 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row mt-3">
                 <div class="col-8">
                   <h5>Popolari</h5>
                   <div class="mt-3 d-flex flex-column" id="popularSongs">
@@ -431,11 +431,18 @@
                 <div class="col-4">
                   <h5>Brani che ti piacciono</h5>
 
-                  <div>
-                    <p class="lh-1">
-                      <strong>Hai messo mi piace a 11 brani</strong>
+                  <div class="d-flex">
+                    <div>
+                      <img class="me-2 rounded-circle" id="likeArtistImg" />
+                    </div>
+                    <p>
+                      <strong
+                        >Hai messo mi piace a
+                        <span id="likeNumber"></span> brani</strong
+                      >
+                      <br />
+                      <small>Di</small> <small id="likeArtist"></small>
                     </p>
-                    <p class="lh-1"><small></small></p>
                   </div>
                 </div>
               </div>
@@ -665,8 +672,8 @@
                     <div class="progress-bar bg-light" style="width: 25%"></div>
                   </div>
                 </div>
-                <div id="durataTrack" class="col-1">
-                  <span
+                <div class="col-1">
+                  <span id="durataTrack"
                     ><!--contenuto dinamico prendere "duration" del brano--></span
                   >
                 </div>

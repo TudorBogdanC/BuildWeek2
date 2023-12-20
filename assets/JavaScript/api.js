@@ -32,3 +32,9 @@ async function getAlbumInEvidence(textToSearch) {
     `https://striveschool-api.herokuapp.com/api/deezer/search?q=${textToSearch}`
   );
 }
+
+async function getAlbumListByArtistId(artistId) {
+  return fetchData(
+    `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/albums`
+  );
+}

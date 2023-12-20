@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let artistId = url.searchParams.get("artistId");
 
     getArtistData(artistId);
+
+    setArrowsNavigation(artistId);
   }
 });
 
@@ -39,6 +41,14 @@ async function artistCard(response) {
   const headerMonthlyFan = document.getElementById("headerMonthlyFan");
   const headerArtistName = document.getElementById("headerArtistName");
 
+  const likeArtist = document.getElementById("likeArtist");
+  const likeArtistImg = document.getElementById("likeArtistImg");
+  const likeNumber = document.getElementById("likeNumber");
+
+  likeArtist.innerText = artistName;
+  likeArtistImg.src = response.picture_small;
+  likeNumber.innerText = getRandomNumber(1, 15);
+
   headerMonthlyFan.innerText = fan;
   headerArtistName.innerText = artistName;
 }
@@ -65,7 +75,12 @@ function contentPopList(artistTopTracks) {
     row.classList.add("row", "d-flex", "m-3");
     row.style.cursor = "pointer";
     row.addEventListener("click", function () {
-      setOnPlay(track.artist.name, track.title, track.album.cover_medium);
+      setOnPlay(
+        track.artist.name,
+        track.title,
+        track.album.cover_medium,
+        track.duration
+      );
     });
 
     let col1 = document.createElement("div");
@@ -100,4 +115,20 @@ function contentPopList(artistTopTracks) {
     // Aggiungi la riga alla lista
     popularList.appendChild(row);
   });
+}
+
+async function setArrowsNavigation(artistId) {
+  let nextArtistId = Number(artistId) + 1;
+  let previousArtistId = Number(artistId) - 1;
+  if (Number(artistId) <= 1) {
+    previousArtistId = 1;
+  }
+
+  const nextArrow = document.getElementById("nextArtist");
+  const previousArrow = document.getElementById("previousArtist");
+
+  let url = "./artist.html?artistId=";
+
+  nextArrow.href = url + nextArtistId;
+  previousArrow.href = url + previousArtistId;
 }

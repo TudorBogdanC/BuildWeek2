@@ -18,6 +18,8 @@ async function getAlbumData(albumId) {
       return;
     }
 
+    await setArrowsNavigation(album.id, album.artist.id);
+
     albumCard(album); // Pass the response to albumCard function
   } catch (error) {
     console.error("Error fetching album data:", error);
@@ -65,7 +67,12 @@ async function albumCard(album) {
     let row = createNewRow("text-light mt-5");
     row.style.cursor = "pointer";
     row.addEventListener("click", function () {
-      setOnPlay(track.artist.name, track.title, track.album.cover_medium);
+      setOnPlay(
+        track.artist.name,
+        track.title,
+        track.album.cover_medium,
+        track.duration
+      );
     });
     // Creazione delle colonne
     let colIndex = createNewCol(1, "text-end");
@@ -93,7 +100,7 @@ async function albumCard(album) {
     
       <div class="row d-flex">
         <div class="col-4">
-          <img src="${cover}" salt="albumPicture">
+          <img src="${cover}" alt="albumPicture">
         </div>
         <div class="col-8 text-light d-flex flex-column align-items-start align-self-end">
         <small>ALBUM</small>
@@ -107,4 +114,33 @@ async function albumCard(album) {
     
   `;
   cardAlbum.innerHTML += div;
+}
+
+async function setArrowsNavigation(currentAlbumId, artistId) {
+  const albums = (await getAlbumListByArtistId(artistId)).data;
+
+  const nextArrow = document.getElementById("nextAlbum");
+  const previousArrow = document.getElementById("previousAlbum");
+
+  let initialIndex = albums.findIndex((album) => album.id == currentAlbumId);
+
+  let nextAlbumId = currentAlbumId;
+  let previousAlbumId = currentAlbumId;
+
+  if (initialIndex == 0) {
+    previousAlbumId = albums[initialIndex].id;
+  } else {
+    previousAlbumId = albums[initialIndex - 1].id;
+  }
+
+  if (initialIndex == albums.lenght - 1) {
+    nextAlbumId = albums[initialIndex].id;
+  } else {
+    nextAlbumId = albums[initialIndex + 1].id;
+  }
+
+  let url = "./album.html?albumId=";
+
+  nextArrow.href = url + nextAlbumId;
+  previousArrow.href = url + previousAlbumId;
 }

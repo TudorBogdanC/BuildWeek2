@@ -345,17 +345,18 @@
                     <!--icone-->
                     <div class="col mt-3 d-flex justify-content-between">
                       <div>
-                        <a class="text-decoration-none" href="./artist.html">
+                        <a id="previousAlbum" class="text-decoration-none">
                           <i
                             class="fa-solid fa-circle-chevron-left fa-2xl"
                             style="color: black"
                           ></i>
                         </a>
-
-                        <i
-                          class="fa-solid fa-circle-chevron-right fa-2xl opacity-50"
-                          style="color: black"
-                        ></i>
+                        <a id="nextAlbum" class="text-decoration-none">
+                          <i
+                            class="fa-solid fa-circle-chevron-right fa-2xl"
+                            style="color: black"
+                          ></i
+                        ></a>
                       </div>
                       <!-- ========== ICONA PROFILO ========== -->
                       <div class="dropdown">
@@ -634,8 +635,8 @@
                     <div class="progress-bar bg-light" style="width: 25%"></div>
                   </div>
                 </div>
-                <div id="durataTrack" class="col-1">
-                  <span
+                <div class="col-1">
+                  <span id="durataTrack"
                     ><!--contenuto dinamico prendere "duration" del brano--></span
                   >
                 </div>

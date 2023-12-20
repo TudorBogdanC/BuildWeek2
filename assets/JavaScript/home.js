@@ -55,7 +55,8 @@ async function albumEvidenza() {
       setOnPlay(
         albumInEvidence.data[randomIndex].artist.name,
         albumInEvidence.data[randomIndex].title,
-        albumInEvidence.data[randomIndex].album.cover_medium
+        albumInEvidence.data[randomIndex].album.cover_medium,
+        albumInEvidence.data[randomIndex].duration
       );
     });
   } catch (error) {
